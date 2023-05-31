@@ -31,7 +31,7 @@ public class SignIn extends AppCompatActivity {
         button_next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(SignIn.this, CustomerSplash.class);
+                Intent intent = new Intent(SignIn.this, Splash.class);
                 startActivity(intent);
             }
         }); /*아이디와 비밀번호 입력 후, next 버튼을 누름 ->
