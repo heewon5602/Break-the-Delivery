@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.bumptech.glide.Glide;
 
-public class CustomerSplash extends AppCompatActivity {
+public class Splash extends AppCompatActivity {
     ImageView imgLoading;
     
     //gif로 사용한다면 아래 코드 사용
