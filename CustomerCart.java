@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +20,7 @@ public class CustomerCart extends AppCompatActivity {
     Button btnDelete; //메뉴 삭제 버튼
     Button btnAdd;
     Button btnMinus;
+    Button btnOrder; //주문하기 버튼
     TextView txtCount; //메뉴 수량
     TextView txtMenu; //메뉴 이름
     private int count = 0;
@@ -39,6 +41,8 @@ public class CustomerCart extends AppCompatActivity {
         txtCount.setText(count+"");
         btnAdd = findViewById(R.id.btn_add);
         btnMinus = findViewById(R.id.btn_minus);
+        btnOrder = findViewById(R.id.btnOrder);
+        private int duration = Toast.LENGTH_SHORT;
 
         /*수량 증가 및 감소, 삭제 버튼들의 기능*/
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -63,6 +67,15 @@ public class CustomerCart extends AppCompatActivity {
 
             }
         });*/
+
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(CustomerCart.this, Payment.class);
+                startActivity(intent);
+                Toast.makeText(CustomerCart.this, "결제를 진행합니다", Toast.LENGTH_SHORT).show();
+            }
+        });
 
         /*하단바 메뉴 버튼들의 기능*/
         btnHome.setOnClickListener(new View.OnClickListener() {
