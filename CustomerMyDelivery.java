@@ -1,57 +1,66 @@
 package com.example.breakthedelivery;
 
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.os.Bundle;
-import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.FragmentActivity;
 
-public class CustomerMyDelivery extends AppCompatActivity {
-    TextView txtStorename; //가게이름
-    TextView txtOrder; //내 주문 내역
+import com.example.breakthedelivery.databinding.ActivityDeliveryMapsBinding;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+public class CustomerMyDelivery extends FragmentActivity implements OnMapReadyCallback {
+
+    private GoogleMap mMap;
+    private ActivityDeliveryMapsBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_my_delivery);
 
-        final LocationManager lm = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        binding = ActivityDeliveryMapsBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-        if (ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+
+        double[] latitude= {37.453099, 37.453644, 37.454189};
+        double[] longitude = {127.128332, 127.127549, 127.128246};
+
+        double sumLatitude = 0;
+        double sumLongitude = 0;
+        double avgLatitude = 0;
+        double avgLongitude = 0;
+
+        //최대 6개의 집에 배달 간다고 가정
+        for (int idx = 0; idx < 3; idx++) {
+            // 1. 마커 옵션 설정 (만드는 과정)
+            MarkerOptions makerOptions = new MarkerOptions();
+            makerOptions // LatLng에 대한 어레이를 만들어서 이용할 수도 있다.
+                    .position(new LatLng(latitude[idx], longitude[idx]))
+                    .title("배달지" + idx+1); // 타이틀.
+
+            // 2. 마커 생성 (마커를 나타냄)
+            mMap.addMarker(makerOptions);
+
+            sumLatitude+=latitude[idx];
+            sumLongitude+=longitude[idx];
         }
-        Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 
-        final LocationListener gpsLocationListener = new LocationListener() {
-            public void onLocationChanged(Location location) {
-                String provider = location.getProvider();
-                double longitude = location.getLongitude();
-                double latitude = location.getLatitude();
-                double altitude = location.getAltitude();
-            }
+        avgLatitude = sumLatitude/3;
+        avgLongitude = sumLongitude/3;
 
-            public void onStatusChanged(String provider, int status, Bundle extras) {
-            }
-
-            public void onProviderEnabled(String provider) {
-            }
-
-            public void onProviderDisabled(String provider) {
-            }
-        };
-        //원하는 시간, 거리에 따라 위치 갱신
-        lm.requestLocationUpdates(LocationManager.GPS_PROVIDER,
-                1000,
-                1,
-                gpsLocationListener);
-        lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
-                1000,
-                1,
-                gpsLocationListener);
+        // 카메라를 위치로 옮긴다.
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(avgLatitude, avgLongitude)));
     }
 }
