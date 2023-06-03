@@ -16,6 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BreakTheDelivery"
         tools:targetApi="31">
+
+        //팝업 activity
+        <activity android:name=".CustomerMakeRoom" android:theme="@android:style/Theme.Dialog"/> //팝업 activity
+
         <activity
             android:name=".CustomerCart"
             android:exported="false" />
@@ -23,7 +27,7 @@
             android:name=".CustomerParticipateStatus"
             android:exported="false" />
         <activity
-            android:name=".CustomerSplash"
+            android:name=".Splash"
             android:exported="false" />
         <activity
             android:name=".ConvertAccount"
