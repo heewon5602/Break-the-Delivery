@@ -47,7 +47,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="25dp"
                 android:fontFamily="@font/do_hyeon"
-                android:text="팬트리 팬케익"
+                android:text="#"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
 
@@ -58,7 +58,7 @@
                 android:layout_marginLeft="15dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/do_hyeon"
-                android:text="sdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdff"
+                android:text="#"
                 android:textColor="@color/black"
                 android:textSize="20dp" />
         </LinearLayout>
