@@ -40,7 +40,7 @@ public class DeliveryCreate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_delivery_create);
+        setContentView(R.layout.signup_deliveryman);
         context = getApplicationContext();
 
         deliveryMan_id = findViewById(R.id.deliverMan_id); //xml에서 editView 형태 Id의 아이디도 txtId라고 가정
@@ -52,6 +52,9 @@ public class DeliveryCreate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 regist();
+                Toast.makeText(context, deliveryMan_id+"님, 계정 생성이 완료되었습니다.", duration).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
     }
