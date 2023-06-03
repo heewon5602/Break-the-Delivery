@@ -41,7 +41,7 @@ public class CustomerCreate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_create);
+        setContentView(R.layout.signup_customer);
         context = getApplicationContext();
 
         customer_id = findViewById(R.id.customer_id); //xml에서 editView 형태 Id의 아이디도 txtId라고 가정
@@ -56,6 +56,9 @@ public class CustomerCreate extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 regist();
+                Toast.makeText(context, customer_id+"님, 계정 생성이 완료되었습니다.", duration).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
     }
