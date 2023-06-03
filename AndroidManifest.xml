@@ -13,15 +13,20 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.BreakTheDelivery"
+        android:enableOnBackInvokedCallback="true"
         tools:targetApi="31">
 
-        //팝업 activity
-        <activity android:name=".CustomerMakeRoom" android:theme="@android:style/Theme.Dialog"/> //팝업 activity
-
+        <activity
+            android:name=".CustomerStore"
+            android:exported="false" />
         <activity
             android:name=".CustomerCart"
+            android:exported="false" />
+        <activity
+            android:name=".CustomerParticipate"
             android:exported="false" />
         <activity
             android:name=".CustomerParticipateStatus"
