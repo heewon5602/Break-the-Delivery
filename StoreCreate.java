@@ -40,7 +40,7 @@ public class StoreCreate extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_store_create);
+        setContentView(R.layout.signup_storeowner);
         context = getApplicationContext();
 
         storeOwner_id = findViewById(R.id.storeOwner_id); //xml에서 editView 형태 Id의 아이디도 txtId라고 가정
@@ -51,7 +51,12 @@ public class StoreCreate extends AppCompatActivity {
 
         btnNext.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {regist(); }
+            public void onClick(View view) {
+                regist();
+                Toast.makeText(context, storeOwner_id+"님, 계정 생성이 완료되었습니다.", duration).show();
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                                           }
         });
     }
     private void regist()
