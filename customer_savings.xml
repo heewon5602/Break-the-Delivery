@@ -51,7 +51,6 @@
             android:gravity="center"
             android:layout_marginTop="10dp"
             android:fontFamily="@font/do_hyeon"
-            android:text="MARCH TOTAL"
             android:textColor="#C70000"
             android:textSize="20dp"/>
 
