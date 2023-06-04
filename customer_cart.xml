@@ -24,6 +24,7 @@
 
         <!--장바구니 버튼-->
         <ImageButton
+            android:id="@+id/btnCart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/shopping_cart"
@@ -50,7 +51,7 @@
 
             <!--장바구니에 담은 음식1-1-->
             <FrameLayout
-                android:id="@+id/store1_1"
+                android:id="@+id/menu1_1"
                 android:layout_width="380dp"
                 android:layout_height="115dp"
                 android:layout_marginTop="10dp"
@@ -76,16 +77,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/count1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="130dp"
                         android:layout_marginTop="60dp"
-                        android:text="수량: 1"
                         android:textSize="18dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/do_hyeon"/>
                     <!--수량 +1 버튼-->
                     <ImageButton
+                        android:id="@+id/plus1"
                         android:src="@drawable/plus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -94,6 +96,7 @@
                         android:background="@android:color/transparent"/>
                     <!--수량 -1 버튼-->
                     <ImageButton
+                        android:id="@+id/minus1"
                         android:src="@drawable/minus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -117,6 +120,7 @@
 
             <!--장바구니에 담은 음식1-2-->
             <FrameLayout
+                android:id="@+id/menu1_2"
                 android:layout_width="380dp"
                 android:layout_height="115dp"
                 android:layout_marginTop="15dp"
@@ -142,16 +146,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/count2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="130dp"
                         android:layout_marginTop="60dp"
-                        android:text="수량: 3"
                         android:textSize="18dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/do_hyeon"/>
                     <!--수량 +1 버튼-->
                     <ImageButton
+                        android:id="@+id/plus2"
                         android:src="@drawable/plus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -160,6 +165,7 @@
                         android:background="@android:color/transparent"/>
                     <!--수량 -1 버튼-->
                     <ImageButton
+                        android:id="@+id/minus2"
                         android:src="@drawable/minus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -183,6 +189,7 @@
 
             <!--장바구니에 담은 음식1-3-->
             <FrameLayout
+                android:id="@+id/menu1_3"
                 android:layout_width="380dp"
                 android:layout_height="115dp"
                 android:layout_marginTop="15dp"
@@ -208,16 +215,17 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView
+                        android:id="@+id/count3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="130dp"
                         android:layout_marginTop="60dp"
-                        android:text="수량: 2"
                         android:textSize="18dp"
                         android:textColor="@color/black"
                         android:fontFamily="@font/do_hyeon"/>
                     <!--수량 +1 버튼-->
                     <ImageButton
+                        android:id="@+id/plus3"
                         android:src="@drawable/plus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -226,6 +234,7 @@
                         android:background="@android:color/transparent"/>
                     <!--수량 -1 버튼-->
                     <ImageButton
+                        android:id="@+id/minus3"
                         android:src="@drawable/minus"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
