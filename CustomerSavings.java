@@ -1,95 +1,135 @@
 package com.example.breakthedelivery;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.Bundle;
-import android.provider.CalendarContract;
-import android.widget.TextView;
-//import java.text.SimpleDateFormat;
-//import java.util.Date;
-import java.util.Calendar;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class CustomerSavings extends AppCompatActivity {
-    TextView txtSavings; //'배달타파 절약현황'이라는 UI 제목의 id 임의 설정
-    TextView txtMonth; //'MONTH TOTAL'이라는 텍스트의 id 임의 설정
-    TextView txtMonthSavings; //'XXXX원 saved!"
-    TextView txtToday; //'Today'
-    TextView txtYesterday; //'Yesterday'
     TextView txtTodayDate; //'ex) 30 March'
     TextView txtYesterdayDate; //'ex) 30 March'
-    TextView txtHistory; //'배달 내역'
-    TextView txtPrice; //'+XXXX원'
-
+    TextView txtMonth; //'MONTH TOTAL'이라는 텍스트의 id 임의 설정
+    ImageButton home_button; //하단바의 홈 버튼
+    ImageButton group_button; //하단바의 참여 버튼
+    ImageButton delivery_button; //하단바의 배달 버튼
+    ImageButton profile_button; //하단바의 마이페이지 버튼
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_my_savings);
+        setContentView(R.layout.customer_savings);
 
-        txtSavings = (TextView) findViewById(R.id.txtSavings);
-        txtMonth = (TextView) findViewById(R.id.txtMonth);
-        txtMonthSavings = (TextView) findViewById(R.id.txtMonthSavings);
-        txtToday = (TextView) findViewById(R.id.txtToday);
-        txtYesterday = (TextView) findViewById(R.id.txtYesterday);
         txtTodayDate = (TextView) findViewById(R.id.txtTodayDate);
         txtYesterdayDate = (TextView) findViewById(R.id.txtYesterdayDate);
-        txtHistory = (TextView) findViewById(R.id.txtHistory);
-        txtPrice = (TextView) findViewById(R.id.txtPrice);
+        txtMonth = (TextView) findViewById(R.id.txtMonth);
+        home_button = (ImageButton)findViewById(R.id.home_button);
+        group_button = (ImageButton)findViewById(R.id.group_button);
+        delivery_button = (ImageButton)findViewById(R.id.delivery_button);
+        profile_button = (ImageButton)findViewById(R.id.profile_button);
+
+        dateFormat();
+
+        /*하단바 메뉴 버튼들의 기능*/
+        home_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CustomerHome.class);
+                startActivity(intent);
+            }
+        });
+
+        group_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CustomerParticipate.class);
+                startActivity(intent);
+            }
+        });
+
+        delivery_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CustomerMyDelivery.class);
+                startActivity(intent);
+            }
+        });
+
+        profile_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), CustomerMyPage.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void dateFormat() {
+        long now = System.currentTimeMillis();// 1970년 1월 1일부터 몇 밀리세컨드가 지났는지를 반환함
+        Date date = new Date(now);
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM");//형식 지정
+        String TodayMonth = simpleDateFormat.format(date);
+        simpleDateFormat = new SimpleDateFormat("d");//형식 지정
+        String TodayDate = simpleDateFormat.format(date);
 
         //날짜 출력하기
-        Calendar calendar = Calendar.getInstance();
-        int m = 1, d = 1;
-        int newD = 1; //m: 월, d: 일, newD:어제날짜 게산 시, d-1=0인 경우의 조건문에 사용
-        int yesterdayDate = d - 1; //yesterdayDate 계산을 위한 format
         String month; //ex)1월: January로 출력하는 switch 조건문에 사용
 
-        m = calendar.get(Calendar.MONTH);
-        d = calendar.get(Calendar.DAY_OF_MONTH);
-
         //오늘 날짜 출력하기 (ex. 30 March)
-        switch (m) {
-            case 1:
+        switch (TodayMonth) {
+            case "01":
                 month = "January";
                 break;
-            case 2:
+            case "02":
                 month = "Feburary";
                 break;
-            case 3:
+            case "03":
                 month = "March";
                 break;
-            case 4:
+            case "04":
                 month = "April";
                 break;
-            case 5:
+            case "05":
                 month = "May";
                 break;
-            case 6:
+            case "06":
                 month = "June";
                 break;
-            case 7:
+            case "07":
                 month = "July";
                 break;
-            case 8:
+            case "08":
                 month = "August";
                 break;
-            case 9:
+            case "09":
                 month = "September";
                 break;
-            case 10:
+            case "10":
                 month = "October";
                 break;
-            case 11:
+            case "11":
                 month = "November";
                 break;
-            case 12:
+            case "12":
                 month = "December";
                 break;
             default:
                 month = "month";
                 break;
         }
-        txtTodayDate.setText(d + "\r\n" + month);
+        txtTodayDate.setText(TodayDate + "\r\n" + month);
+        txtMonth.setText(month+" TOTAL");
 
         //어제 날짜 계산 및 출력하기 (ex. 30 March)
+        int d = Integer.parseInt(TodayDate);
+        int yesterdayDate = d - 1; //yesterdayDate 계산을 위한 format
+        int newD = 1; //m: 월, d: 일, newD:어제날짜 게산 시, d-1=0인 경우의 조건문에 사용
+
         if (yesterdayDate == 0) {
             if (month == "January") {
                 newD = 31;
@@ -129,6 +169,9 @@ public class CustomerSavings extends AppCompatActivity {
                 month = "November";
             }
             txtYesterdayDate.setText(newD + "\r\n" + month);
-        } else txtYesterdayDate.setText(yesterdayDate + "\r\n" + month);
+        } else
+            txtYesterdayDate.setText(yesterdayDate + "\r\n" + month);
+
+        return;
     }
 }
